@@ -1,0 +1,4 @@
+S => ABabC | b | c
+A => Ba | b | ε
+B => bc | Bbc | ε
+C => c | ε
