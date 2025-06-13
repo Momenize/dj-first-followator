@@ -65,4 +65,3 @@ def first(nt):
 for nt in nonterminals:
     if len(nt.first) == 0:
         first(nt)
-
