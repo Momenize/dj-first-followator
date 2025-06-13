@@ -1,25 +1,28 @@
-import string
-
 f = open('grammar.txt', 'r')
+lines = f.readlines()
+f.close()
+
+
+
 class NonTerminal:
-    def __init__(self, symbol: str):
+    def __init__(self, symbol):
         self.symbol = symbol
-        self.rules = [str]
-        self.first_dependencies = [str]
-        self.follow_dependencies = [str]
+        self.rules = []
 
-nont = [NonTerminal]
-while 1:
-    line = f.readline()
-    if not(line is None or line == '' or line == string.whitespace):
-        symb, rules = line.strip().split('=>')
-        bigh = NonTerminal(symb)
-        r = list(rules.strip().split('|'))
-        bigh.rules = r
-        nont.append(bigh)
-    else:
-        break
-symbols = []
-for non in nont:
-    print(non.symbol)
+class Rule:
+    def __init__(self, s: str, nont: NonTerminal):
+        self.s = s
+        self.nont = nont
+        self.nont.rules.append(self)
 
+nonterminals = []
+
+
+for line in lines:
+    rules = []
+    symbol, rule = line.split(' => ')
+    nonterminal = NonTerminal(symbol)
+    nonterminals.append(nonterminal)
+    rules.extend(rule.split(' | '))
+    for rule in rules:
+        r = Rule(rule, nonterminal)
