@@ -1,4 +1,5 @@
-S => ABabC | b | c
-A => Ba | b | ε
-B => bc | Bbc | ε
+S => AbcaD | BcdC | ab
+A => Aa | ε | abB
+B => bAC | ε
 C => c | ε
+D => a | ε
